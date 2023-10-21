@@ -8,7 +8,7 @@ use Taboritis\DTO\Examples\Person;
 
 class PersonFactory
 {
-    public function create()
+    public function create(): Person
     {
         return new Person();
     }
