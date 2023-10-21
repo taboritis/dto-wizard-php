@@ -1,0 +1,50 @@
+name: PHP Composer
+
+on:
+  push:
+    branches: [ "**" ]
+  pull_request:
+    branches: [ "" ]
+
+permissions:
+  contents: read
+  issues: read
+  checks: write
+  pull-requests: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Validate composer.json and composer.lock
+        run: composer validate --strict
+
+      - name: Cache Composer packages
+        id: composer-cache
+        uses: actions/cache@v3
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: PhpUnit tests
+        run: ./vendor/bin/pest --log-junit .results/results-phpunit.xml
+
+      - name: CodeSniffer tests
+        run: ./vendor/bin/phpcs --report-full --report-junit=.results/results-codesniffer.xml
+
+      - name: PhpStan tests
+        run: vendor/bin/phpstan --error-format=junit >> .results/results-phpstan.xml
+
+      - name: Publish Test Report
+        uses: mikepenz/action-junit-report@v3
+        if: success() || failure()
+        with:
+          report_paths: '.results/results-*.xml'
