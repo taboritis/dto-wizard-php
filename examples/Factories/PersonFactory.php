@@ -9,8 +9,5 @@ use Taboritis\DTO\Examples\Person;
 
 class PersonFactory extends DtoFactory
 {
-    public function newInstance(): object
-    {
-        return new Person();
-    }
+    protected string $model = Person::class;
 }
