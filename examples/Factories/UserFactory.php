@@ -5,12 +5,14 @@ declare(strict_types=1);
 namespace Taboritis\DTO\Examples\Factories;
 
 use Taboritis\DTO\DtoFactory;
-use Taboritis\DTO\Examples\Person;
+use Taboritis\DTO\Examples\User;
 
-class PersonFactory extends DtoFactory
+class UserFactory extends DtoFactory
 {
+
     public function newInstance(): object
     {
-        return new Person();
+        return new User();
     }
+
 }

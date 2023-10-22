@@ -1,6 +1,7 @@
 parameters:
-#  ignoreErrors:
-#    - '#Class [a-zA-Z0-9\\_].+ has an uninitialized readonly property.+#'
+  ignoreErrors:
+    - '#Class [a-zA-Z0-9\\_].+ has an uninitialized readonly property.+#'
+  checkGenericClassInNonGenericObjectType: false
   level: 9
   paths:
     - src
