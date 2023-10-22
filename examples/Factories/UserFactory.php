@@ -9,10 +9,4 @@ use Taboritis\DTO\Examples\User;
 
 class UserFactory extends DtoFactory
 {
-
-    public function newInstance(): object
-    {
-        return new User();
-    }
-
 }
