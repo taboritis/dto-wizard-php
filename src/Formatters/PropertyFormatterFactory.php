@@ -2,14 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Taboritis\DTO;
+namespace Taboritis\DTO\Formatters;
 
 use DateTimeInterface;
 use ReflectionClass;
 use ReflectionProperty;
-use Taboritis\DTO\Formatters\FormatterInterface;
-use Tests\Taboritis\DTO\Examples\DefaultFormatter;
-use Tests\Taboritis\DTO\Examples\ObjectFormatter;
 
 class PropertyFormatterFactory
 {

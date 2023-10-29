@@ -8,7 +8,9 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use ReflectionProperty;
 use Taboritis\DTO\Examples\User;
-use Taboritis\DTO\PropertyFormatterFactory;
+use Taboritis\DTO\Formatters\DefaultFormatter;
+use Taboritis\DTO\Formatters\ObjectFormatter;
+use Taboritis\DTO\Formatters\PropertyFormatterFactory;
 use Tests\Taboritis\DTO\TestCase;
 
 #[CoversClass(PropertyFormatterFactory::class)]
