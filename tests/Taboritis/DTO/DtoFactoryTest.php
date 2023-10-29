@@ -13,21 +13,20 @@ use Tests\Taboritis\DTO\TestCase;
 #[CoversClass(DtoFactory::class)]
 class DtoFactoryTest extends TestCase
 {
-    #[Test]
-    public function it_gets_explicite_defined_model(): void
-    {
-        $factory = new class extends DtoFactory {
-            protected string $model = User::class;
-        };
+    private DtoFactory $factory;
 
-        $this->assertInstanceOf(User::class, $factory->getModel());
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->factory = new DtoFactory();
     }
-
     #[Test]
-    public function it_looks_model_in_parent_namespace(): void
+    public function it_can_create_with_given_model(): void
     {
-        $factory = new UserFactory();
+        $data = [
+            'name' => 'Piotr'
+        ];
 
-        $this->assertInstanceOf(User::class, $factory->getModel());
+        $this->assertInstanceOf(User::class, $this->factory->create(User::class, $data));
     }
 }
