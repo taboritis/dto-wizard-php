@@ -8,7 +8,7 @@ use DateTime;
 use DateTimeImmutable;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
-use Taboritis\DTO\DateTimeFormatter;
+use Taboritis\DTO\Formatters\DateTimeFormatter;
 use Tests\Taboritis\DTO\TestCase;
 
 #[CoversClass(DateTimeFormatter::class)]

@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Taboritis\DTO\Examples;
-
-use Taboritis\DTO\Formatters\FormatterInterface;
+namespace Taboritis\DTO\Formatters;
 
 class DefaultFormatter implements FormatterInterface
 {

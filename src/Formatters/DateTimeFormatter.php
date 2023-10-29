@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Taboritis\DTO;
-
-use Taboritis\DTO\Formatters\FormatterInterface;
+namespace Taboritis\DTO\Formatters;
 
 class DateTimeFormatter implements FormatterInterface
 {
