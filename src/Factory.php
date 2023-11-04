@@ -6,14 +6,17 @@ namespace Taboritis\DTO;
 
 use Exception;
 use ReflectionException;
-use Taboritis\DTO\Formatters\PropertyFormatterFactory;
+use Taboritis\DTO\Formatters\Context;
+use Taboritis\DTO\Formatters\FormatterInterface;
 
 /**
  * @template T of object
  */
-class DtoFactory
+class Factory
 {
     protected string $model;
+
+    private Context $context;
 
     /**
      * @param class-string<T> $modelFQCN
@@ -28,7 +31,7 @@ class DtoFactory
         }
 
         $model = new $modelFQCN();
-
+        $this->context = new Context();
         $reflection = new \ReflectionClass($model);
 
         foreach ($rawData as $propertyName => $propertyValue) {
@@ -43,8 +46,9 @@ class DtoFactory
 
     private function getCastedValue(\ReflectionProperty $property, mixed $propertyValue): mixed
     {
-        $formatter = PropertyFormatterFactory::create($property);
+        $context = $this->context->getContext($property);
+        $formatter = $this->context->getFormatter($context);
 
-        return $formatter->format($propertyValue);
+        return $formatter->format($propertyValue, $property);
     }
 }

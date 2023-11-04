@@ -4,35 +4,32 @@ declare(strict_types=1);
 
 namespace Taboritis\DTO;
 
-use Iterator;
+use ArrayIterator;
+use IteratorAggregate;
+use Traversable;
 
-class Collection implements Iterator
+class Collection implements IteratorAggregate
 {
-    /** @var array<int|string, mixed> */
+    /** @var array<string|int, mixed> */
     private array $items = [];
 
-    public function current(): mixed
+    /**
+     * @return ArrayIterator
+     */
+    public function getIterator(): Traversable
     {
-        return current($this->items);
+        return new ArrayIterator($this->items);
     }
 
-    public function next(): void
+    public function add(mixed $item): void
     {
-        // TODO: Implement next() method.
+        $this->items[] = $item;
     }
 
-    public function key(): mixed
+    public function first(): mixed
     {
-        return $this->items[$this->current()];
-    }
+        $this->getIterator()->rewind();
 
-    public function valid(): bool
-    {
-        return true;
-    }
-
-    public function rewind(): void
-    {
-        // TODO: Implement rewind() method.
+        return $this->getIterator()->current();
     }
 }

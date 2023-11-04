@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Taboritis\DTO\Examples;
 
 use DateTimeImmutable;
+use Taboritis\DTO\Collection;
+use Taboritis\DTO\CollectionOf;
 
 class User
 {
@@ -19,4 +21,7 @@ class User
      * @var string[]
      */
     public array $types;
+
+    #[CollectionOf(Post::class)]
+    public Collection $posts;
 }

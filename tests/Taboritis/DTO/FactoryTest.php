@@ -8,17 +8,18 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use Taboritis\DTO\Examples\Factories\UserFactory;
 use Taboritis\DTO\Examples\User;
+use Taboritis\DTO\Formatters\DefaultFormatter;
 use Tests\Taboritis\DTO\TestCase;
 
-#[CoversClass(DtoFactory::class)]
-class DtoFactoryTest extends TestCase
+#[CoversClass(Factory::class)]
+class FactoryTest extends TestCase
 {
-    private DtoFactory $factory;
+    private Factory $factory;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->factory = new DtoFactory();
+        $this->factory = new Factory();
     }
     #[Test]
     public function it_can_create_with_given_model(): void

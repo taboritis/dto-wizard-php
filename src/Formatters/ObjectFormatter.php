@@ -5,28 +5,24 @@ declare(strict_types=1);
 namespace Taboritis\DTO\Formatters;
 
 use ReflectionException;
-use Taboritis\DTO\DtoFactory;
+use ReflectionProperty;
+use Taboritis\DTO\Factory;
 
-/**
- * @template T of object
- */
 class ObjectFormatter implements FormatterInterface
 {
     /**
-     * @param class-string<T> $classFQN
-     */
-    public function __construct(private readonly string $classFQN)
-    {
-    }
-
-    /**
-     * @param array<string, mixed> $rawData
+     * @param array<string, mixed> $value
+     * @param ReflectionProperty $property
+     * @return mixed
      * @throws ReflectionException
      */
-    public function format(mixed $rawData): mixed
+    public function format(mixed $value, ReflectionProperty $property): mixed
     {
-        $factory = new DtoFactory();
+        $factory = new Factory();
 
-        return $factory->create($this->classFQN, $rawData);
+        /** @phpstan-ignore-next-line */
+        $classFQN = $property->getType()->getName();
+
+        return $factory->create($classFQN, $value);
     }
 }
