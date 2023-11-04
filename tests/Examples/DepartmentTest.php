@@ -6,7 +6,7 @@ namespace Tests\Taboritis\DTO\Examples;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
-use Taboritis\DTO\DtoFactory;
+use Taboritis\DTO\Factory;
 use Taboritis\DTO\Examples\Department;
 use Tests\Taboritis\DTO\TestCase;
 
@@ -20,7 +20,7 @@ class DepartmentTest extends TestCase
             'hash' => $hash = $this->faker->sha256()
         ];
 
-        $factory = new DtoFactory();
+        $factory = new Factory();
         $department = $factory->create(Department::class, $rawData);
 
         $this->assertEquals($hash, $department->getHash());

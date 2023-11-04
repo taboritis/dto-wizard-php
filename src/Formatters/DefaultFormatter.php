@@ -6,7 +6,7 @@ namespace Taboritis\DTO\Formatters;
 
 class DefaultFormatter implements FormatterInterface
 {
-    public function format(mixed $value): mixed
+    public function format(mixed $value, \ReflectionProperty $property = null): mixed
     {
         return $value;
     }

@@ -5,22 +5,25 @@ declare(strict_types=1);
 namespace Tests\Taboritis\DTO\Examples;
 
 use DateTimeInterface;
+use Iterator;
+use IteratorAggregate;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
-use Taboritis\DTO\DtoFactory;
+use Taboritis\DTO\Factory;
 use Taboritis\DTO\Examples\Department;
+use Taboritis\DTO\Examples\Post;
 use Taboritis\DTO\Examples\User;
 use Tests\Taboritis\DTO\TestCase;
 
 #[CoversClass(User::class)]
 class UserTest extends TestCase
 {
-    protected DtoFactory $factory;
+    protected Factory $factory;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->factory = new DtoFactory();
+        $this->factory = new Factory();
     }
 
     #[Test]
@@ -86,5 +89,19 @@ class UserTest extends TestCase
 
         $this->assertIsArray($user->types);
         $this->assertEquals($types, $user->types);
+    }
+
+    #[Test]
+    public function it_has_many_posts(): void
+    {
+        $user = $this->factory->create(User::class, [
+            'posts' => [
+                ['title' => $this->faker->sentence(), 'body' => $this->faker->paragraph()],
+                ['title' => $this->faker->sentence(), 'body' => $this->faker->paragraph()],
+            ]
+        ]);
+
+        $this->assertInstanceOf(IteratorAggregate::class, $user->posts);
+        $this->assertInstanceOf(Post::class, $user->posts->first());
     }
 }

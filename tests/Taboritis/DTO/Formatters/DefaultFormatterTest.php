@@ -2,12 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Tests\Taboritis\DTO\Examples;
+namespace Taboritis\DTO\Formatters;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use Taboritis\DTO\Examples\User;
-use Taboritis\DTO\Formatters\DefaultFormatter;
 use Tests\Taboritis\DTO\TestCase;
 
 #[CoversClass(DefaultFormatter::class)]
