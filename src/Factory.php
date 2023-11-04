@@ -32,7 +32,6 @@ class Factory
 
         $model = new $modelFQCN();
         $this->context = new Context();
-
         $reflection = new \ReflectionClass($model);
 
         foreach ($rawData as $propertyName => $propertyValue) {

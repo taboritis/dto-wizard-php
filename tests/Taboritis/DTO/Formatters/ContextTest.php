@@ -2,12 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Taboritis\DTO\Examples\Formatters;
+namespace Taboritis\DTO\Formatters;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use Taboritis\DTO\Examples\User;
-use Taboritis\DTO\Formatters\Context;
 use Tests\Taboritis\DTO\TestCase;
 
 #[CoversClass(Context::class)]
@@ -40,11 +39,6 @@ class ContextTest extends TestCase
     {
         $mock = $this->createMock(\ReflectionProperty::class);
 
-//        $mock->expects($this->once())
-//            ->method('hasType')->willReturn(false);
-//        $mock->expects($this->once())
-//            ->method('getName')->willReturn('array');
-
         $result = $this->context->getContext($mock);
 
         $this->assertEquals('default', $result);
@@ -65,5 +59,4 @@ class ContextTest extends TestCase
 
         $this->assertEquals('object', $result);
     }
-
 }
