@@ -7,7 +7,6 @@ namespace Taboritis\DTO;
 use Exception;
 use ReflectionException;
 use Taboritis\DTO\Formatters\Context;
-use Taboritis\DTO\Formatters\FormatterInterface;
 
 /**
  * @template T of object
