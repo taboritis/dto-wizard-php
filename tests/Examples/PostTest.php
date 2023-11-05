@@ -6,8 +6,8 @@ namespace Tests\Taboritis\DTO\Examples;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
-use Taboritis\DTO\Factory;
 use Taboritis\DTO\Examples\Post;
+use Taboritis\DTO\Factory;
 use Tests\Taboritis\DTO\TestCase;
 
 #[CoversClass(Post::class)]
@@ -34,5 +34,11 @@ class PostTest extends TestCase
     public function it_has_a_body(): void
     {
         $this->assertNotNull($this->post->body);
+    }
+
+    #[Test]
+    public function it_can_be_created_by_factory_method(): void
+    {
+        $this->assertInstanceOf(Post::class, Post::create());
     }
 }
