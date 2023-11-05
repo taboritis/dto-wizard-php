@@ -1,6 +1,6 @@
 {
-    "name": "taboritis/dto-php",
-    "description": "Data Transfer Objects for PHP",
+    "name": "taboritis/dto-wizard-php",
+    "description": "Data Transfer Objects with nested structures in PHP",
     "type": "library",
     "require": {
         "php": ">=8.1",
@@ -28,7 +28,7 @@
     "authors": [
         {
             "name": "Piotr Skrobol",
-            "email": "pio.skro@gmail.com"
+            "email": "taboritis@gmail.com"
         }
     ],
     "minimum-stability": "stable"
