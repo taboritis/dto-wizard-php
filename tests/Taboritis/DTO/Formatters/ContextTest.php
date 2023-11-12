@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Taboritis\DTO\Formatters;
+namespace Tests\Taboritis\DTO\Taboritis\DTO\Formatters;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use Taboritis\DTO\Examples\User;
+use Taboritis\DTO\Formatters\Context;
 use Tests\Taboritis\DTO\TestCase;
 
 #[CoversClass(Context::class)]
@@ -58,5 +59,13 @@ class ContextTest extends TestCase
         $result = $this->context->getContext(new \ReflectionProperty(User::class, 'department'));
 
         $this->assertEquals('object', $result);
+    }
+
+    #[Test]
+    public function its_gets_array_context(): void
+    {
+        $property = new \ReflectionProperty(User::class, 'types');
+
+        $this->assertEquals('default', $this->context->getContext($property));
     }
 }

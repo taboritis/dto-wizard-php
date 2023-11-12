@@ -10,20 +10,20 @@ use Traversable;
 
 class Context
 {
+    public const DEFAULT_TYPES = ['string', 'bool', 'int', 'float', 'double', 'array'];
+
     /** @var array<string, FormatterInterface> */
     private static array $formatters = [];
 
     public function getFormatter(string $context): FormatterInterface
     {
         if (!isset(self::$formatters[$context])) {
-            $formatter = match ($context) {
+            self::$formatters[$context] = match ($context) {
                 'object' => new ObjectFormatter(),
                 'collection' => new CollectionFormatter(),
                 'date', 'datetime' => new DateTimeFormatter(),
                 default => new DefaultFormatter()
             };
-
-            self::$formatters[$context] = $formatter;
         }
 
         return self::$formatters[$context];
@@ -39,6 +39,10 @@ class Context
         $name = $property->getType()->getName();
 
         if (!$name) {
+            return 'default';
+        }
+
+        if (in_array($name, self::DEFAULT_TYPES)) {
             return 'default';
         }
 

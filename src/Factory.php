@@ -7,6 +7,7 @@ namespace Taboritis\DTO;
 use Exception;
 use ReflectionException;
 use Taboritis\DTO\Formatters\Context;
+use Traversable;
 
 /**
  * @template T of object
@@ -16,6 +17,11 @@ class Factory
     protected string $model;
 
     private Context $context;
+
+    public function __construct(Context $context = null)
+    {
+        $this->context = $context ?? new Context();
+    }
 
     /**
      * @param class-string<T> $modelFQCN
@@ -30,7 +36,7 @@ class Factory
         }
 
         $model = new $modelFQCN();
-        $this->context = new Context();
+
         $reflection = new \ReflectionClass($model);
 
         foreach ($rawData as $propertyName => $propertyValue) {
@@ -49,5 +55,22 @@ class Factory
         $formatter = $this->context->getFormatter($context);
 
         return $formatter->format($propertyValue, $property);
+    }
+
+    /**
+     * @param class-string<T> $class
+     * @param array<array<string, mixed>> $rawData
+     * @return Collection<T>
+     * @throws ReflectionException
+     */
+    public function createMany(string $class, array $rawData): Traversable
+    {
+        $collection = new Collection();
+
+        foreach ($rawData as $rawDatum) {
+            $collection->add(item: $this->create($class, $rawDatum));
+        }
+
+        return $collection;
     }
 }
