@@ -8,7 +8,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use Taboritis\DTO\Examples\Factories\UserFactory;
 use Taboritis\DTO\Examples\User;
-use Taboritis\DTO\Formatters\DefaultFormatter;
+use Tests\Taboritis\DTO\Taboritis\DTO\Formatters\DefaultFormatter;
 use Tests\Taboritis\DTO\TestCase;
 
 #[CoversClass(Factory::class)]

@@ -17,6 +17,11 @@ class Factory
 
     private Context $context;
 
+    public function __construct(Context $context = null)
+    {
+        $this->context = $context ?? new Context();
+    }
+
     /**
      * @param class-string<T> $modelFQCN
      * @param array<string, mixed> $rawData
@@ -30,7 +35,7 @@ class Factory
         }
 
         $model = new $modelFQCN();
-        $this->context = new Context();
+
         $reflection = new \ReflectionClass($model);
 
         foreach ($rawData as $propertyName => $propertyValue) {
