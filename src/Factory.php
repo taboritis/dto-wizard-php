@@ -7,6 +7,7 @@ namespace Taboritis\DTO;
 use Exception;
 use ReflectionException;
 use Taboritis\DTO\Formatters\Context;
+use Traversable;
 
 /**
  * @template T of object
@@ -54,5 +55,22 @@ class Factory
         $formatter = $this->context->getFormatter($context);
 
         return $formatter->format($propertyValue, $property);
+    }
+
+    /**
+     * @param class-string<T> $class
+     * @param array<array<string, mixed>> $rawData
+     * @return Collection<T>
+     * @throws ReflectionException
+     */
+    public function createMany(string $class, array $rawData): Traversable
+    {
+        $collection = new Collection();
+
+        foreach ($rawData as $rawDatum) {
+            $collection->add(item: $this->create($class, $rawDatum));
+        }
+
+        return $collection;
     }
 }
