@@ -18,9 +18,9 @@
 <!-- TOC -->
 
 ## What problem does it solve?
-Sometimes, it may be necessary to convert a complex, multi-layered array into an object-oriented format that preserves the original structure.
+Sometimes it may be necessary to convert a complex multi-layered array into an object-oriented format that preserves the original structure.
 
-To achieve this result, DTO-Wizard provides a straightforward API that eliminates the need for repetitive iterations and transformations.
+To achieve this result DTO-Wizard provides a straightforward API that eliminates the need for repetitive iterations and transformations.
 
 ## Basic usage
 
@@ -42,7 +42,8 @@ $user->score    // Error - property must be initialized
 ```
 
 ### Readonly properties
-It is recommended to use readonly properties as often as possible. This will have the same effect as unchanged data.
+It is strongly recommended to use readonly properties as often as possible. This will have the same effect as unchanged data.
+
 ```php
 class User
 {
@@ -54,9 +55,9 @@ $user->name = 'Mary'; // Error: Cannot initialize readonly property
 ```
 
 ### Private properties
-Although it is not recommended, it is possible to set private object properties using a factory. 
+Although setting private properties is not recommended in DTO, it can be done using DtoWizard/Factory.
 However, it is important to remember that in such cases, you must also create a getter that allows access to the given property.
-Of course, in this scenario, you can take advantage of the getter's advantages, such as the ability to handle unset or nullable properties.
+Of course, in this situation, you can benefit from the advantages of using a getter, such as its ability to handle properties that are unset or nullable.
 
 ```php
 class User
